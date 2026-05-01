@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UserRegistrationAndLoginForm from '../components/UserRegistrationAndLoginForm';
 
 const UserRegistrationAndLogin = () => {
