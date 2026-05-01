@@ -1,9 +1,41 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-const taskCommentSchema = new mongoose.Schema({
-    taskId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Task' },
-    content: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
+const TaskComment = sequelize.define('TaskComment', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    task_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'tasks', // name of the target table
+            key: 'id', // key in the target table that we're referencing
+        },
+        onDelete: 'CASCADE',
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'users', // name of the target table
+            key: 'id', // key in the target table that we're referencing
+        },
+        onDelete: 'CASCADE',
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+}, {
+    tableName: 'comments',
+    timestamps: false,
 });
 
-module.exports = mongoose.model('TaskComment', taskCommentSchema);
+module.exports = TaskComment;
