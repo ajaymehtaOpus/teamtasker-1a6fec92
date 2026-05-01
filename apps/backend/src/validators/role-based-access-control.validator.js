@@ -4,7 +4,9 @@ const { body, validationResult } = require('express-validator');
 const roleValidator = [
     body('role')
         .isIn(['Admin', 'Manager', 'Member'])
-        .withMessage('Role must be one of the following: Admin, Manager, Member'),
+        .withMessage('Role must be one of the following: Admin, Manager, Member')
+        .notEmpty()
+        .withMessage('Role is required'),
 ];
 
 // Middleware to validate role
