@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS dashboard (
+    id SERIAL PRIMARY KEY,
+    totalTasks INT NOT NULL DEFAULT 0,
+    tasksInProgress INT NOT NULL DEFAULT 0,
+    tasksDone INT NOT NULL DEFAULT 0
+);

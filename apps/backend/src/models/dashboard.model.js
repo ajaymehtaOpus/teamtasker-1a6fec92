@@ -1,37 +1,25 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Task = sequelize.define('Task', {
-    id: {
+const Dashboard = sequelize.define('Dashboard', {
+    totalTasks: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        allowNull: false,
+        defaultValue: 0
     },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    status: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    project_id: {
+    tasksInProgress: {
         type: DataTypes.INTEGER,
-        references: {
-            model: 'projects',
-            key: 'id'
-        }
+        allowNull: false,
+        defaultValue: 0
     },
-    assigned_to: {
+    tasksDone: {
         type: DataTypes.INTEGER,
-        references: {
-            model: 'users',
-            key: 'id'
-        }
+        allowNull: false,
+        defaultValue: 0
     }
 }, {
-    tableName: 'tasks',
+    tableName: 'dashboard',
     timestamps: false
 });
 
-module.exports = Task;
+module.exports = Dashboard;
